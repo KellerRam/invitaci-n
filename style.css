@@ -1,52 +1,84 @@
 body {
     background-color: #0d0f14;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    margin: 0;
 }
 
 #card{
     position: relative;
-    padding: 2em;
-    width: 300px;
+    width: 90vw;
+    max-width: 420px;
     background: #1c1f2b;
-    text-align: center;
-    color: #fff;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 30px;
-    border-radius: 10px;
+    border-radius: 15px;
+    padding: 6px;
+    z-index: 2;
 }
 
-@property --angle{
+.card-content{
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+@property --angle {
     syntax: "<angle>";
     initial-value: 0deg;
     inherits: false;
 }
-#card::after, #card::before{
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-image: conic-gradient(from var(--angle),#ff4545, #00ff99, #006aff, #ff0095);
-    top: 50%;
-    left: 50%;
-    translate: -50% -50%;
-    z-index: -1;
-    padding: 3px;
-    border-radius: 10px;   
-    animation: 3s spin linear infinite;
+
+#card::before,#card::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:15px;
+    background-image:conic-gradient(from var(--angle),
+    #614af3,#da3498,#ff747b,#f1bd8a);
+    animation:spin 4s linear infinite;
+    z-index:-1;
+}
+#card::before{ filter:blur(5px); } 
+#card::after{ filter:blur(2px);}
+
+@keyframes spin{ to{ --angle:360deg; } }
+
+#imagen img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
 }
 
-#card::before{
-    filter: blur(1.5rem);
+.botones {
+    display:flex;
+    gap:15px;
+    margin-top:18px;
+    flex-wrap:wrap;
+    justify-content:center;
 }
 
-@keyframes spin{
-    from{
-        --angle: 0deg;
-    }
-    to{
-        --angle: 360deg;
-    }
+.rgb-btn{
+    position:relative;
+    padding:12px 30px;
+    font-size:18px;
+    background:#0d0f14;
+    color:white;
+    border-radius:10px;
+    border:none;
+    cursor:pointer;
 }
+
+.rgb-btn::before,
+.rgb-btn::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    background-image:conic-gradient(from var(--angle),
+    #614af3,#da3498,#ff747b,#f1bd8a);
+    animation:spin 4s linear infinite;
+    z-index:-1;
+}
+.rgb-btn::before{filter:blur(12px);}
