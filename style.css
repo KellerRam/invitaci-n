@@ -14,7 +14,7 @@ body {
     max-width: 420px;
     background: #1c1f2b;
     border-radius: 15px;
-    padding: 6px;
+    padding: 3px;
     z-index: 2;
 }
 
@@ -39,8 +39,8 @@ body {
     animation:spin 4s linear infinite;
     z-index:-1;
 }
-#card::before{ filter:blur(5px); } 
-#card::after{ filter:blur(2px);}
+#card::before{ filter:blur(10px); } 
+#card::after{ filter:blur(5px);}
 
 @keyframes spin{ to{ --angle:360deg; } }
 
